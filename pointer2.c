@@ -1,34 +1,34 @@
 #include <stdio.h>
+#include <stdlib.h>
 
+
+//Alocação dinamica de memoria
 int main() {
-    /*esse tamanho aqui é só por conta do for, porque se 
-    não ele não consegue percorrer os itens que meu array tem*/
-    int tamanho = 5;
+    /*função malloc é usado para alocar um bloco de memória de tamanho especifico
+    Ela retorna um ponteiro para a área de memoria alocada*/
 
-    /*aqui meu array com tamanho definido*/
-    int numeros[] = {5, 10, 15, 20, 30};
+    int *m;
 
-    /*aqui eu, alem de criar um ponteiro, eu associo ele ao meu array.
-    Como meu ponteiro é do tipo int, ele so vai conseguir salvar nele o
-    valor da primeira posição do meu array(lembrando que eu estou salvando como
-    numeros e não *numeros. Ou seja não é o endereço de memoria que to salvando)*/
-    int *ponteiro = numeros;
+    m = (int*) malloc(4); /*o int* esta identificando o tipo de memoria(casting pro tipo integer);
+    ele retorna o endereço inicial desses 4 bytes de memoria//endereço pra um inteiro*/
 
-   /*nosso for pra percorrer o array com uma variavel int i e um tamanho do tamanho
-   do array*/
+    /*o malloc é tipo como se fosse uma variavel na qual meu ponteiro aponta pra ela
+    porém em vez de ser uma variavel é um espaço de memória "sem nome" com tamanho especifico*/
 
-    for (int i = 0; i < tamanho; i++) {
-        // aqui ele apenas imprime o primeiro valor do array
-        printf("Número %d: %d\n", i + 1, *ponteiro);
+    *m = 5; //perceba que aqui eu estou salvando no endereço dado por malloc; *p é o VALOR ACESSADO PELO PONTEIRO
 
-        /*aqui ele incrementa o ponteiro partindo, então, para outra posição de
-        do array.
-        Perceba que se eu colocar em vez de ponteiro++ por *ponteiro++ eu altero 
-        meu array e não a posição de memoria*/
+    free(m); //libera o espaço apontado por m;
+    /*Obs: malloc reserba um espaço de memoria mas ela não zera o que tem dentro 
+    desse espaço de memoria, ou seja, se tiver lixo naquele espaço, vai continuar la*/
+    /*O calloc zera esse espaço de memoria*/
 
+    int *c;
+    c = (int*) calloc(1,4); /*o calloc recebe dois argumentos: o primeiro é a quantidade
+    de elementos que eu quero alocar e o segundo é o tamanho de bytes que esse elemento ocupa*/
+    *c = 7000;
 
-        ponteiro++;
-    }
+    printf("Valor de malloc: %d\n", *m);
+    printf("Valor de calloc: %d\n", *c);
 
     return 0;
 }
