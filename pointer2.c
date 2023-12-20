@@ -4,31 +4,21 @@
 
 //Alocação dinamica de memoria
 int main() {
-    /*função malloc é usado para alocar um bloco de memória de tamanho especifico
-    Ela retorna um ponteiro para a área de memoria alocada*/
+    
+    int *p; 
 
-    int *m;
+    p = (int*) malloc(sizeof(int)); /*aqui eu estou dizendo que é do tipo int e mais na
+    frente eu digo que o tamanho que eu quero é do tipo int ou seja 4 bytes ou 32bits*/
 
-    m = (int*) malloc(4); /*o int* esta identificando o tipo de memoria(casting pro tipo integer);
-    ele retorna o endereço inicial desses 4 bytes de memoria//endereço pra um inteiro*/
 
-    /*o malloc é tipo como se fosse uma variavel na qual meu ponteiro aponta pra ela
-    porém em vez de ser uma variavel é um espaço de memória "sem nome" com tamanho especifico*/
+    printf("Digite o valor do seu ponteiro alocado por malloc: \n");
+    scanf("%d", p); /*Aqui no scanf espera um endereço de memoria pra salvar aquele valor
+    logo o endereço de memoria é meu p que dentro dele armazena meu malloc*/
 
-    *m = 5; //perceba que aqui eu estou salvando no endereço dado por malloc; *p é o VALOR ACESSADO PELO PONTEIRO
-
-    free(m); //libera o espaço apontado por m;
-    /*Obs: malloc reserba um espaço de memoria mas ela não zera o que tem dentro 
-    desse espaço de memoria, ou seja, se tiver lixo naquele espaço, vai continuar la*/
-    /*O calloc zera esse espaço de memoria*/
-
-    int *c;
-    c = (int*) calloc(1,4); /*o calloc recebe dois argumentos: o primeiro é a quantidade
-    de elementos que eu quero alocar e o segundo é o tamanho de bytes que esse elemento ocupa*/
-    *c = 7000;
-
-    printf("Valor de malloc: %d\n", *m);
-    printf("Valor de calloc: %d\n", *c);
+    /*  Quando você usa scanf("%d", p);, o valor digitado 
+    pelo usuário é armazenado no local de memória para o qual p aponta, ou seja, malloc.*/
+    
+    printf("Valor de malloc: %d\n", *p);
 
     return 0;
 }
